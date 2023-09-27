@@ -26,15 +26,15 @@ public class Drivetrain extends SubsystemBase {
 
   /** Creates a new Drivetrain. */
   public Drivetrain() {
-    RFTalon = new TalonSRX(Constants.Talons.IDs.RF_TALON_ID);
-    LFTalon = new TalonSRX(Constants.Talons.IDs.LF_TALON_ID);
-    LBTalon = new TalonSRX(Constants.Talons.IDs.LB_TALON_ID);
-    RBTalon = new TalonSRX(Constants.Talons.IDs.RB_TALON_ID);
+    RFTalon = new TalonSRX(0);
+    LFTalon = new TalonSRX(1);
+    LBTalon = new TalonSRX(2);
+    RBTalon = new TalonSRX(3);
 
-    RFTalon.setInverted(Constants.Talons.Inversions.RF_TALON_INVERT);
-    LFTalon.setInverted(Constants.Talons.Inversions.LF_TALON_INVERT);
-    RBTalon.setInverted(Constants.Talons.Inversions.RB_TALON_INVERT);
-    LBTalon.setInverted(Constants.Talons.Inversions.LB_TALON_INVERT);
+    RFTalon.setInverted(false);
+    LFTalon.setInverted(true);
+    RBTalon.setInverted(false);
+    LBTalon.setInverted(true);
 
     RFTalon.setNeutralMode(NeutralMode.Coast);
     LFTalon.setNeutralMode(NeutralMode.Coast);
@@ -60,8 +60,8 @@ public class Drivetrain extends SubsystemBase {
 
   }
   public void arcadeDrive(double forward, double rotation, double throttle) {
-    set((forward - rotation) * throttle * Constants.Talons.Speed.DRIVE_TALON_SPEED,
-        (forward + rotation) * throttle * Constants.Talons.Speed.DRIVE_TALON_SPEED);
+    set((forward - rotation) * throttle * 0.5,
+        (forward + rotation) * throttle * 0.5);
   }
 
   @Override
